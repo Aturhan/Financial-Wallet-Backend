@@ -1,0 +1,28 @@
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5450/currency_dev
+    username: root
+    password: root
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: false
+
+  cache:
+    type: redis
+
+
+cache:
+  config:
+    entryTtl: 120
+    currencies:
+      entryTtl: 120
+
+
+
+currency:
+  url: "https://www.yapikredi.com.tr/yatirimci-kosesi/doviz-bilgileri"
