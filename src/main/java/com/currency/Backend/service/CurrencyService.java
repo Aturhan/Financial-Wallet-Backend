@@ -63,6 +63,8 @@ public class CurrencyService implements ICurrencyService{
                     String description = cells.get(1).text();
                     String buyingPrice = cells.get(2).text();
                     String sellingPrice = cells.get(3).text();
+                    String change = cells.get(4).text();
+                    log.info("Change rate = "+change);
                     Currency curr = currencyRepository.findCurrencyByCode(currencyCode);
                     if(curr == null){
                         log.info("Currency Code: " + currencyCode + ", Description: " + description + ", Buying Price: " + buyingPrice + ", Selling Price: " + sellingPrice);
@@ -72,13 +74,10 @@ public class CurrencyService implements ICurrencyService{
                                 .buyingPrice(buyingPrice)
                                 .sellingPrice(sellingPrice)
                                 .build();
-                        currencyRepository.save(currency);
+                        saveCurrencies(currency);
                     }
                     else {
-                        curr.setBuyingPrice(buyingPrice);
-                        curr.setSellingPrice(sellingPrice);
-                        currencyRepository.save(curr);
-                        log.info("Updated currency "+curr.getCode() + " " + curr.getBuyingPrice());
+                        updateCurrency(curr,buyingPrice,sellingPrice);
                     }
 
 
@@ -87,6 +86,21 @@ public class CurrencyService implements ICurrencyService{
         }catch (IOException e){
             log.error("Exception: "+e.getMessage());
         }
+    }
+
+
+    @Transactional
+    public void saveCurrencies(Currency currency){
+        currencyRepository.save(currency);
+    }
+
+
+    @Transactional
+    public void updateCurrency(Currency currency,String buying,String selling){
+        currency.setBuyingPrice(buying);
+        currency.setSellingPrice(selling);
+        currencyRepository.save(currency);
+        log.info("Updated currency "+currency.getCode() + " " + currency.getBuyingPrice());
     }
 
 

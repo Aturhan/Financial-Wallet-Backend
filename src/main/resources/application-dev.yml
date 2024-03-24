@@ -22,7 +22,11 @@ cache:
     currencies:
       entryTtl: 120
 
-
+server:
+  port: 8787
 
 currency:
   url: "https://www.yapikredi.com.tr/yatirimci-kosesi/doviz-bilgileri"
+
+jwt:
+  key: GWjtA5DqSZ4dwrLcy7gvTruNxbgca3OiWsAxIhiQn2c3yDMV6TO5zQvEtMqyt5nfxqdSPQURXSD63bYCqXpbqYe8EPkiFDsL4EjntqKAZouJIG/qQNvQg+R+O6JJqyseUh6OF9UmNmxeALmAP39yzoUieiuANGCYboiRc3DcgUc=
