@@ -1,6 +1,7 @@
 package com.currency.Backend.controller;
 
 import com.currency.Backend.model.DTOs.CreateUserReq;
+import com.currency.Backend.model.DTOs.RegisterResponse;
 import com.currency.Backend.service.IUserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class UserController {
         this.userService = userService;
     }
     @PostMapping(path = "save")
-    public void save(@Valid @RequestBody CreateUserReq req){
-        userService.save(req);
+    public ResponseEntity<RegisterResponse> save(@Valid @RequestBody CreateUserReq req){
+        return ResponseEntity.ok().body(userService.save(req));
     }
 }

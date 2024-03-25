@@ -1,8 +1,6 @@
 package com.currency.Backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
@@ -22,5 +20,7 @@ public class User extends BaseEntity implements Serializable {
     private String email;
     @Column(nullable = false)
     private String password;
-    private Set<String> currencyCodes;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id",referencedColumnName = "id")
+    private Account account;
 }

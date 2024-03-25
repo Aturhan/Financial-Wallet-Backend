@@ -1,9 +1,10 @@
-package com.currency.Backend.service;
+package com.currency.Backend.service.impl;
 
+import com.currency.Backend.exception.EntityNotFoundException;
 import com.currency.Backend.model.Currency;
 
 import com.currency.Backend.repository.CurrencyRepository;
-import jakarta.persistence.EntityNotFoundException;
+import com.currency.Backend.service.ICurrencyService;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,7 +22,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class CurrencyService implements ICurrencyService{
+public class CurrencyService implements ICurrencyService {
     private final CurrencyRepository currencyRepository;
 
     @Value("${currency.url}")
