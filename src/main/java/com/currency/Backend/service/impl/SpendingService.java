@@ -41,6 +41,7 @@ public class SpendingService implements ISpendingService {
         return CreateSpendRes.builder()
                 .spendDto(SpendDto.builder()
                         .id(saved.getId())
+                        .spendType(saved.getSpendType().getValue())
                         .amount(saved.getAmount())
                         .accountId(saved.getAccount().getId())
                         .title(saved.getTitle())
@@ -56,6 +57,7 @@ public class SpendingService implements ISpendingService {
                 .stream()
                 .map(spend -> SpendDto.builder()
                         .title(spend.getTitle())
+                        .spendType(spend.getSpendType().getValue())
                         .accountId(spend.getAccount().getId())
                         .id(spend.getId())
                         .amount(spend.getAmount()).build()).collect(Collectors.toList());
@@ -69,6 +71,7 @@ public class SpendingService implements ISpendingService {
                 .amount(spending.getAmount())
                 .id(spending.getId())
                 .title(spending.getTitle())
+               .spendType(spending.getSpendType().getValue())
                 .accountId(spending.getAccount().getId())
                 .build();
     }

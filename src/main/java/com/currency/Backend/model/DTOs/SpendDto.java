@@ -7,6 +7,7 @@ public record SpendDto(
         String title,
         String id,
         String accountId,
-        Double amount
+        Double amount,
+        String spendType
 ) {
 }
