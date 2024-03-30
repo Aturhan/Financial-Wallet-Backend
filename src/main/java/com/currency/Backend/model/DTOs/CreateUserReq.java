@@ -17,6 +17,6 @@ public record CreateUserReq(
         String email,
         @NotBlank(message = "password is required")
         String password,
-        CreateAccountReq createAccountReq
+        Double amount
 ) {
 }

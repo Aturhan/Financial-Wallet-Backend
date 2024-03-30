@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.reactive.function.client.WebClient;
+
 
 @Service
 @Slf4j
@@ -45,7 +45,7 @@ public class UserService implements IUserService {
                 if (checkUser != null){
                     throw new EmailExistsException("Email is already exists");
                 }
-              final Account account = saveAccount(req.createAccountReq());
+              final Account account = saveAccount(req.amount());
                 User saveUser = User.builder()
                         .email(req.email())
                         .name(req.name())
@@ -63,8 +63,8 @@ public class UserService implements IUserService {
 
     }
 
-    public Account saveAccount(CreateAccountReq req){
-       return accountService.save(req);
+    public Account saveAccount(Double amount){
+       return accountService.save(amount);
     }
 
 

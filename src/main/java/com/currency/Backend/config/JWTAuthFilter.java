@@ -28,11 +28,10 @@ public class JWTAuthFilter extends OncePerRequestFilter {
                     SecurityContextHolder.getContext().setAuthentication(authProvider.validateToken(authElement[1]));
                 }catch (TokenExpiredException e) {
                     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                    response.getWriter().write("Token Expired!");
+                    log.error("Token Error: "+response.getStatus());
                 } catch (Exception e) {
                     response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                    response.getWriter().write("Server error: " + e.getMessage());
-                    log.error("Server error:", e);
+                    log.error("Server error:"+ e.getMessage());
                 }
             }
         }
